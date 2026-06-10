@@ -1,0 +1,5 @@
+{
+    "id": "compile-check",
+    "description": "Compile our project assets",
+    "command": "npm run build"
+}

@@ -1,0 +1,5 @@
+{
+  "id": "demo-task-1",
+  "description": "Create a proof file inside the DEV branch to assert sandbox execution",
+  "command": "node -e \"require('fs').writeFileSync('dev_proof.txt', 'This file was created by the Hermes Agent running on dev branch inside WSL!', 'utf8')\""
+}

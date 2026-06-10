@@ -1,0 +1,5 @@
+{
+    "id": "echo-test",
+    "description": "Test basic execution",
+    "command": "echo 'Hello from Hermes!' > hermes_hello.txt"
+}

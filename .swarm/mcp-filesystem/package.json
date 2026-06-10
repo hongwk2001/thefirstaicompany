@@ -1,0 +1,13 @@
+{
+  "name": "tkprof-mcp-filesystem",
+  "version": "1.0.0",
+  "description": "MCP filesystem server for TKPROF AI Agent Factory",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.6.0",
+    "@modelcontextprotocol/server-filesystem": "^0.6.0"
+  }
+}
