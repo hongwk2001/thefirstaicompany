@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermes Agent & WSL 2 Setup Retrospective</title>
+    <style>
+        :root {
+            --bg-main: #0B0F19;
+            --bg-card: #151D30;
+            --bg-accent: #1E2942;
+            --text-primary: #F3F4F6;
+            --text-secondary: #9CA3AF;
+            --accent: #06B6D4; /* Glowing Teal */
+            --accent-glow: rgba(6, 182, 212, 0.15);
+            --border: #2D3748;
+            --success: #10B981;
+            --font: 'JetBrains Mono', 'Segoe UI', system-ui, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: var(--font);
+            line-height: 1.6;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 1.5rem auto 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            background: linear-gradient(135deg, #FFF 30%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Stats grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .stat-val {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* Timeline styling */
+        .timeline {
+            position: relative;
+            margin-left: 20px;
+            border-left: 2px solid var(--border);
+            padding-left: 30px;
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 3.5rem;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            left: -41px;
+            top: 4px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--bg-main);
+            border: 4px solid var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .step-badge {
+            font-size: 0.75rem;
+            background: var(--accent-glow);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: normal;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .code-block {
+            background: var(--bg-main);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        ul {
+            list-style-position: inside;
+            margin-left: 0.5rem;
+            margin-top: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: var(--text-primary);
+        }
+
+        /* Checkbox items */
+        .checklist {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .checklist li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Hermes Agent WSL Setup Retrospective</h1>
+            <p class="subtitle">Windows 11 ➡️ WSL 2 ➡️ Local Ollama ➡️ Hermes AI Swarm</p>
+        </header>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-val">WSL 2</div>
+                <div class="stat-label">Host OS (Ubuntu)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val">Ollama</div>
+                <div class="stat-label">Local LLM Host</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val">9119</div>
+                <div class="stat-label">Web Dashboard Port</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val">Telegram</div>
+                <div class="stat-label">Secure Bot Gateway</div>
+            </div>
+        </section>
+
+        <div class="timeline">
+            <!-- Step 1 -->
+            <div class="step">
+                <div class="step-title">
+                    Step 1: Establishing WSL 2 & Environment
+                    <span class="step-badge">Infrastructure</span>
+                </div>
+                <div class="step-card">
+                    <p>Configured WSL 2 environment running Ubuntu on a Windows 11 host. Verified setup integrity and prepared the environment with necessary developer utilities (Node, Python, Git).</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Bash</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre>sudo apt-get update && sudo apt-get upgrade -y
+node --version && npm --version</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step">
+                <div class="step-title">
+                    Step 2: Installing Local Models (Ollama)
+                    <span class="step-badge">AI Inference</span>
+                </div>
+                <div class="step-card">
+                    <p>Successfully set up and triggered local LLMs natively using Ollama inside the WSL environment. Pulled advanced coder models to enable offline intelligence:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Bash</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre># Pulled state-of-the-art coder model
+ollama pull qwen2.5-coder:14b
+ollama pull gemma2:9b
+ollama list</pre>
+                    </div>
+                    <ul class="checklist">
+                        <li>Offline capabilities active for local developer assistance</li>
+                        <li>Configured for quick fallback options</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step">
+                <div class="step-title">
+                    Step 3: Deploying Hermes Agent
+                    <span class="step-badge">Automation Platform</span>
+                </div>
+                <div class="step-card">
+                    <p>Successfully retrieved and executed the custom Hermes installation script to provision the runtime and launch capabilities:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Bash</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre>bash .swarm/wsl_install_hermes.sh
+hermes --version</pre>
+                    </div>
+                    <p>Configured core model parameters and credential storage via the terminal command line:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Bash</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre>hermes config set GEMINI_API_KEY &lt;API_KEY&gt;
+hermes config set model.name qwen2.5-coder:14b</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step">
+                <div class="step-title">
+                    Step 4: Bot Gateway Verification & Security
+                    <span class="step-badge">Messaging</span>
+                </div>
+                <div class="step-card">
+                    <p>Mapped out communication channels to link the WSL session to Telegram secure chat. Activated access control to restrict interaction safely:</p>
+                    <ul class="checklist">
+                        <li>Provisioned secure Bot Token via <strong>@BotFather</strong></li>
+                        <li>Bound credential mapping inside <strong>~/.hermes/.env</strong></li>
+                        <li>Retrieved numeric ID from <strong>@userinfobot</strong> to secure authorization</li>
+                        <li>Set up chat filtering inside <strong>~/.hermes/config.yaml</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step">
+                <div class="step-title">
+                    Step 5: Visual Workspace & Dashboard
+                    <span class="step-badge">Web UI</span>
+                </div>
+                <div class="step-card">
+                    <p>Enabled the real-time web UI tracking dashboard hosted at port <strong>9119</strong>. This grants instant transparency into system resource metrics, active execution paths, file logs, and background cron schedules:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Bash</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre>hermes dashboard --status</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="step">
+                <div class="step-title">
+                    Step 6: User Asks & Troubleshooting Decisions
+                    <span class="step-badge">Collaborative Tuning</span>
+                </div>
+                <div class="step-card">
+                    <p>Documented the specific troubleshooting requests, model overrides, and API configurations requested by the user to achieve a stable production deployment:</p>
+                    <ul style="list-style-type: square; margin-left: 1.5rem; color: var(--text-secondary);">
+                        <li style="margin-bottom: 0.75rem;"><strong>Model Strategy Adjustments:</strong> Pulled the latest <code>qwen3.6:35b</code> and <code>gemma4:31b</code> models. Switched to <code>qwen2.5-coder:7b</code> and <code>gemma4:e4b</code> to avoid Out-Of-Memory (OOM) CPU fallback issues within the 7.6GB WSL RAM bounds.</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>Context Window Overrides:</strong> Overrode the 64,000 minimum token restriction by setting <code>model.context_length</code> and <code>model.ollama_num_ctx</code> to <code>65536</code> in <code>config.yaml</code>.</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>Gemini API Billing Fix:</strong> Generated a new API key under a billed Google Cloud Project in AI Studio instead of the default "My First Project" free tier to bypass the HTTP 429 quota exhaustion.</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>WSL Node/NPM Path Isolation:</strong> Bypassed Windows/WSL symlink path errors during package installs by running the native Linux <code>/usr/bin/npm</code> and stripping Windows paths from the execution <code>PATH</code>.</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>Git Branch Case-Sensitivity:</strong> Patched the verification scripts to handle <code>DEV</code> (uppercase Windows environment branch output) vs <code>dev</code> (lowercase branch names) case-insensitively.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Generated dynamically by <strong>Hermes Agent</strong> | Shared WSL File: <a href="#">/mnt/d/git_repo/thefirstaicompany/retro_setup_summary.html</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function copyCode(button) {
+            const pre = button.parentElement.nextElementSibling;
+            const text = pre.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerText;
+                button.innerText = 'Copied!';
+                button.style.color = '#10B981';
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.color = '';
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>

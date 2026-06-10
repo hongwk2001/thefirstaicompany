@@ -1,0 +1,13 @@
+{
+  "name": "thefirstaicompany",
+  "version": "1.0.0",
+  "description": "Welcome to the central repository for the first AI company project, executing agent workflows inside WSL 2 and Docker sandboxes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
