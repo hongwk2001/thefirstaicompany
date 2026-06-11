@@ -22,7 +22,7 @@ This file tracks active learning and setup tasks for your Hermes Agent workspace
 - [ ] Inspect how tools are dynamically loaded and registered
 
 ### 4. Educational Content Creation Pipeline Use Case
-- [ ] Design an agent pipeline blueprint to ingest documents/web pages and auto-generate educational study sheets, summaries, and revision cards
+- [x] Design an agent pipeline blueprint to ingest documents/web pages and auto-generate educational study sheets, summaries, and revision cards (Completed: Ingested Alex Finn YouTube Masterclass, extracted transcripts, and compiled strategies to `HERMES_MASTERCLASS_SUMMARY.md`)
 
 ### 5. Docker Integration and Source Code Deep-Dive
 - [x] Locate the source code pieces inside `/home/hongw/.hermes/hermes-agent` showing how the Docker container backend spawns and runs commands
