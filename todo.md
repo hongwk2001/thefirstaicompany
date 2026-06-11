@@ -15,6 +15,7 @@ This file tracks active learning and setup tasks for your Hermes Agent workspace
 - [x] Create a static HTML summary of the setup process (Windows 11 ➡️ WSL 2 ➡️ Node/Ollama ➡️ Hermes Agent ➡️ Gemini/Local Qwen configuration)
 - [x] Save draft for publishing on Medium / Jigsawpuzzle Helper (Draft saved at `TKPROF_AGENT_FACTORY_JOURNEY.md`)
 - [x] Create roadmap under documentation (Strategic roadmap saved at `roadmap.md` and linked in retro summary HTML)
+- [x] Refine and deploy `CLAUDE.md` and `.cursorrules` ruleset to enforce high-retention "No Man Company" AI development principles (surgical edits, triage cockpit gate, and error-intercept loops)
 
 ### 3. Familiarizing with Hermes Core Features
 - [ ] Explore session recovery using the TUI and CLI (`hermes -c` / `hermes sessions list`)
