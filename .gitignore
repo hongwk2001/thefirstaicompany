@@ -30,3 +30,15 @@ Desktop.ini
 # Local progress and temp files
 .swarm/mailboxes/*/inbox/*
 !.swarm/mailboxes/*/inbox/.gitkeep
+
+# Media assets
+*.mp3
+*.mp4
+*.png
+*.jpg
+*.jpeg
+
+# Swarm logs and run progress
+.swarm/orchestrator.log
+.swarm/mailboxes/*/processed/*
+!.swarm/mailboxes/*/processed/.gitkeep

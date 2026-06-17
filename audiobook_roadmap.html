@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audiobook Project Roadmap - Print Version</title>
+    <style>
+        /* Print-friendly Typography & Layout */
+        body {
+            font-family: Georgia, serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #111;
+            margin: 1in;
+            background-color: #fff;
+        }
+
+        h1, h2, h3 {
+            font-family: Arial, sans-serif;
+            color: #000;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            font-size: 20pt;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 14pt;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 3px;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            font-size: 12pt;
+            margin-top: 1.2rem;
+        }
+
+        p, ul, ol {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* Checkbox Styling for Print */
+        .task-list-item {
+            list-style-type: none;
+            position: relative;
+            padding-left: 5px;
+        }
+
+        .checkbox {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #333;
+            margin-right: 8px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+
+        .checked::after {
+            content: "✓";
+            position: absolute;
+            font-size: 10px;
+            line-height: 12px;
+            left: 2px;
+            top: -1px;
+            font-weight: bold;
+        }
+
+        .in-progress {
+            background-color: #eee;
+            border-style: dashed;
+        }
+
+        .in-progress::after {
+            content: "⋯";
+            position: absolute;
+            font-size: 9px;
+            line-height: 12px;
+            left: 2px;
+            top: -2px;
+            font-weight: bold;
+        }
+
+        /* Notes & Warnings */
+        .note-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #666;
+            padding: 10px 15px;
+            margin: 1rem 0;
+            font-size: 10pt;
+            font-style: italic;
+        }
+
+        /* Print Specific Adjustments */
+        @media print {
+            body {
+                margin: 0.5in;
+            }
+            .no-print {
+                display: none;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+            h1, h2, h3 {
+                page-break-after: avoid;
+            }
+            tr, li, p {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Print button styling for browser view */
+        .print-btn-container {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .print-btn {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .print-btn:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="print-btn-container no-print">
+        <button class="print-btn" onclick="window.print()">Print or Save as PDF</button>
+    </div>
+
+    <h1>Audiobook Project Roadmap</h1>
+    <p style="text-align: center; font-style: italic; margin-top: -10px; font-size: 10pt;">Modernized Classical Novels for ESL Learners</p>
+
+    <h2>1. Project Vision</h2>
+    <p>To create audiobooks of classical novels (e.g., <em>The Secret Garden</em>) translated into modern, engaging English, specifically targeting English as a Second Language (ESL) listeners and modern casual readers who seek to enjoy great literature without the archaic language barriers of original texts.</p>
+
+    <h2>2. Market Validation: Why a Market Exists</h2>
+    <ul>
+        <li><strong>The "Language Barrier" for Modern Readers:</strong> Traditional classical literature often uses archaic phrasing, vocabulary, and complex sentence structures, making it challenging even for native English speakers.</li>
+        <li><strong>Massive ESL/EFL Demographic:</strong> Millions of intermediate-to-advanced English learners desire to consume classic literature for language improvement but are hindered by outdated vocabulary and complex syntax.</li>
+        <li><strong>Public Domain Advantage:</strong> Utilizing public domain works eliminates licensing and copyright fees, allowing for legal rewriting, recording, and sale of modernized versions.</li>
+        <li><strong>"Edutainment" Trend:</strong> There's a growing demand for content that educates and entertains simultaneously, enabling busy professionals and adult learners to multitask and feel intellectually stimulated without needing a dictionary.</li>
+    </ul>
+
+    <h2>3. Lean Validation Experiment: Investigate and Test the Market</h2>
+    <p>Before committing significant resources to a full novel, a low-cost, low-risk validation experiment will be conducted:</p>
+
+    <h3><span class="checkbox checked"></span> Step 1: Select a 1-Chapter Pilot</h3>
+    <ul>
+        <li><strong>Time:</strong> 2-3 days</li>
+        <li><strong>Task:</strong> Choose a famous, high-interest scene (approx. 1,000 to 1,500 words) from a public domain classic like <em>The Secret Garden</em>.</li>
+    </ul>
+
+    <h3><span class="checkbox checked"></span> Step 2: Dual-Language Adaptation (English & Korean)</h3>
+    <ul>
+        <li><strong>Task 2.1:</strong> Rewrite the entire Chapter 1 of <em>The Secret Garden</em> into modern, clear, engaging English suitable for an advanced ESL listener or modern casual reader. Keep the emotional depth and plot, but remove archaic vocabulary and overly complex 19th-century sentence structures.</li>
+        <li><strong>Task 2.2:</strong> Translate the entire Chapter 1 of <em>The Secret Garden</em> directly from the original English source text into natural, modern, and engaging Korean, preserving the richness and detail of the original story.</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h3><span class="checkbox checked"></span> Step 3: Audio Generation Pipeline - English (Full Chapter 1)</h3>
+    <ul>
+        <li><strong>Step 3.1: Voice Selection & Preview:</strong> Identify ElevenLabs voices for each character (Narrator, Mary, Servant, Mother, Officer) and generate previews.</li>
+        <li><strong>Step 3.2: Structured Script Preparation:</strong> Format the full modernized Chapter 1 text into a structured JSON script. Explicitly replace roman numerals like "CHAPTER I." with phonetic text ("Chapter One") to prevent the TTS from reading it as "Chapter Eye".</li>
+        <li><strong>Step 3.3: Automated Audio Generation & Stitching:</strong> Programmatically compile the segments into a seamless, multi-voice audiobook file for the entire Chapter 1.</li>
+    </ul>
+
+    <h3><span class="checkbox checked"></span> Step 4: Audio Generation Pipeline - Korean (Full Chapter 1)</h3>
+    <ul>
+        <li><strong>Task:</strong> Programmatically generate the Korean multi-voice audiobook for the entire Chapter 1 using ElevenLabs' multilingual model. Format roman numerals phonetically (e.g., "제일 장" instead of "제I장") to ensure proper pronunciation, and compile the final file.</li>
+    </ul>
+
+    <h3><span class="checkbox in-progress"></span> Step 5: Lean Market Smoke Testing (YouTube & Podcast Platforms)</h3>
+    <p>Run our pilot on YouTube and target standard podcast distribution to reach audiobook listeners.</p>
+
+    <h4><span class="checkbox checked"></span> Step 5.1: YouTube & YouTube Podcasts Setup & Launch</h4>
+    <ul>
+        <li class="task-list-item"><span class="checkbox checked"></span> <strong>Task 5.1.1:</strong> Generate visual assets and a high-CTR thumbnail.</li>
+        <li class="task-list-item"><span class="checkbox checked"></span> <strong>Task 5.1.2:</strong> Render video files by merging audio with visual assets.</li>
+        <li class="task-list-item"><span class="checkbox checked"></span> <strong>Task 5.1.3:</strong> Generate timed subtitle tracks (.srt) for on-screen read-along.</li>
+        <li class="task-list-item"><span class="checkbox checked"></span> <strong>Task 5.1.4:</strong> Draft metadata, relevant SEO tags, and descriptions.</li>
+        <li class="task-list-item"><span class="checkbox checked"></span> <strong>Task 5.1.5:</strong> Upload English and Korean versions to YouTube.</li>
+        <li class="task-list-item"><span class="checkbox checked"></span> <strong>Task 5.1.6:</strong> Create Podcast playlist in YouTube Studio and publish.</li>
+        <li class="task-list-item"><span class="checkbox checked"></span> <strong>Task 5.1.7:</strong> Update description placeholders with the live GoDaddy landing page link.</li>
+    </ul>
+
+    <h4><span class="checkbox in-progress"></span> Step 5.2: Phase 2 Expansion (Traditional Podcasts & Audiobook Platforms)</h4>
+    <ul>
+        <li class="task-list-item"><span class="checkbox checked"></span> <strong>Podcast RSS Distribution:</strong> Published English pilot and Korean pilot on Spotify for Podcasters (live under a single unified feed).
+            <div class="note-box"><strong>Automation Note:</strong> Future uploads can be fully automated by hosting our own RSS XML feed on GoDaddy. A script will auto-generate the feed and upload audio files directly.</div>
+        </li>
+        <li class="task-list-item"><span class="checkbox in-progress"></span> <strong>Audiobook Platforms:</strong>
+            <ul>
+                <li><em>Google Play:</em> <strong>[✓]</strong> Uploaded English and Korean versions. Currently pending Google's policy/account review (live soon).</li>
+                <li><em>Findaway (Apple Books/etc.):</em> <strong>[⋯]</strong> English project created, audio splits (credits/samples) uploaded. Currently waiting on Findaway's 24-hour verification hold to complete tax/payment setup and finalize submission.</li>
+                <li><em>Korean Local Platforms Note:</em> Domestic platforms like <strong>Welaaa (윌라)</strong> and <strong>Millie's Library (밀리의 서재)</strong> dominate the Korean domestic market instead of Apple/Spotify. Direct submission to these platforms should be pursued if validation metrics look positive for the Korean pilot edition.</li>
+            </ul>
+        </li>
+        <li class="task-list-item"><span class="checkbox checked"></span> <strong>Pre-order Landing Page:</strong> Built a responsive, dual-language feedback landing page hosted at <code>jigsawpuzzlehelper.com/secret_garden/</code> to capture emails and pre-order signups.</li>
+    </ul>
+
+    <h3><span class="checkbox"></span> Step 6: Multi-Channel Data Analysis</h3>
+    <p><strong>Time:</strong> 2 weeks (Ongoing monitoring)</p>
+    <p><strong>Detailed Analytics Checklist:</strong></p>
+    <ul>
+        <li><strong>Podcast Analytics (Spotify for Creators):</strong>
+            <ul>
+                <li><em>Retention Graphs:</em> Monitor the second-by-second drop-off curve for Episode 1 (English) and Episode 2 (Korean). Look for steep drops which indicate spelling/pacing issues or off-putting character voice shifts.</li>
+                <li><em>Completion Rate:</em> Aim for &gt;25% of listeners reaching the end of the 10-minute episode (industry standard for cold podcast discoveries).</li>
+            </ul>
+        </li>
+        <li><strong>GoDaddy Landing Page & Feedback (Direct Emails):</strong>
+            <ul>
+                <li><em>Inbox Review:</em> Audit incoming emails to <code>tkprof.ai@gmail.com</code> daily.</li>
+                <li><em>Rating Breakdown:</em> Calculate average rating scores (e.g. ratio of "Excellent" to "Good" or "Hard").</li>
+                <li><em>Pre-order Conversion Rate:</em> Ratio of total landing page visitors to optional email signup subscriptions (Target: &gt;3% signup conversion rate, typical for cold web traffic).</li>
+            </ul>
+        </li>
+        <li><strong>Google Play Books Dashboard:</strong>
+            <ul>
+                <li><em>Acquisition Volume:</em> Track free downloads (units claimed) for the English and Korean books.</li>
+                <li><em>Store Reviews:</em> Monitor qualitative store ratings and reviews (important since readers on book stores have different expectations than podcast listeners).</li>
+            </ul>
+        </li>
+        <li><strong>YouTube Studio & YouTube Music:</strong>
+            <ul>
+                <li><em>Visual Optimization:</em> Compare Impression Click-Through Rate (CTR) between the English and Korean thumbnails (Target: &gt;3.5% CTR, standard for new channel discovery).</li>
+                <li><em>Engagement Rates:</em> Check Comments, Likes, and Shares to verify organic reach and viewer feedback.</li>
+            </ul>
+        </li>
+        <li><strong>Decision Point:</strong> If audience retention is stable (&gt;30% average view duration) on YouTube/Spotify and we receive positive ratings/emails via the GoDaddy form, trigger full-book production for Chapter 2.</li>
+    </ul>
+
+    <h2>4. Hidden Challenges to Keep in Mind</h2>
+    <ol>
+        <li><strong>Narration Quality is King:</strong> High-quality voice performance is crucial. Robotic or jarring cadences will negatively impact retention. Prioritize premium AI voices or consider professional voice talent for scaling.</li>
+        <li><strong>Preserving the "Soul" of the Book:</strong> The modernization process must maintain the original story's magic, setting, and emotional depth without "dumbing down" the content.</li>
+        <li><strong>Discoverability:</strong> The public domain market is saturated. Marketing efforts must clearly highlight the unique value proposition: "Classic stories told in the language we speak today."</li>
+    </ol>
+
+    <h2>5. Production Rules for Chapter Openings</h2>
+    <ul>
+        <li><strong>English Audio Intro:</strong> <em>"The Secret Garden, written by Frances Hodgson Burnett in 1911. This edition is adapted into clear, modern English, designed for middle school students and language learners."</em></li>
+        <li><strong>Korean Audio Intro:</strong> <em>"고전원문을 AI를 이용한 2026년식 새 번역으로 만나는 비밀의 화원."</em></li>
+    </ul>
+
+</body>
+</html>

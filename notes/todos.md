@@ -1,0 +1,3 @@
+- [ ] Continue 'No Man Company' Hermes journey
+- [ ] Job search (respond to email)
+- [ ] Check Alley state
